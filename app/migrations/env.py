@@ -22,6 +22,8 @@ from app.backend.db import Base
 from app.models.category import Category
 from app.models.products import Product
 
+from app.backend.db import Base
+from app.models import category, products
 target_metadata = Base.metadata
 
 # other values from the config, defined by the needs of env.py,
