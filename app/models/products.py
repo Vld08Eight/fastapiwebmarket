@@ -12,8 +12,9 @@ class Product(Base):
     price = Column(Integer)
     image_url = Column(String)
     stock = Column(Integer)
-    category_id = Column(Integer, ForeignKey('categories.id')) # New
+    supplier_id = Column(Integer, ForeignKey('users.id'), nullable=True)  # New
+    category_id = Column(Integer, ForeignKey('categories.id'))
     rating = Column(Float)
     is_active = Column(Boolean, default=True)
 
-    category = relationship('Category', back_populates='products') # New
+    category = relationship('Category', back_populates='products')
