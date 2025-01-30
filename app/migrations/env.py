@@ -22,9 +22,11 @@ if config.config_file_name is not None:
 from app.backend.db import Base
 from app.models.category import Category
 from app.models.products import Product
+from app.models.reviews import Review  
+from app.models.ratings import Rating 
 
 from app.backend.db import Base
-from app.models import category, products, user
+from app.models import category, product, user, rating, review
 target_metadata = Base.metadata
 # other values from the config, defined by the needs of env.py,
 # can be acquired:

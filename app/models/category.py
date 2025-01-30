@@ -1,7 +1,7 @@
 from app.backend.db import Base
 from sqlalchemy import Column, Integer, String, Boolean, ForeignKey # New
 from sqlalchemy.orm import relationship
-from app.models.products import Product
+from app.models.product import Product
 
 
 class Category(Base):
@@ -14,3 +14,4 @@ class Category(Base):
     parent_id = Column(Integer, ForeignKey('categories.id'), nullable=True)  # New
 
     products = relationship("Product", back_populates="category")
+    

@@ -10,7 +10,7 @@ from app.backend.db_depends import get_db
 from app.schemas import CreateProduct
 from app.models import *
 from app.models.category import Category
-from app.models.products import Product
+from app.models.product import Product
 from app.routers.auth import get_current_user
 
 router = APIRouter(prefix='/products', tags=['products'])
