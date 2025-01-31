@@ -21,9 +21,9 @@ if config.config_file_name is not None:
 # target_metadata = mymodel.Base.metadata
 from app.backend.db import Base
 from app.models.category import Category
-from app.models.products import Product
-from app.models.reviews import Review  
-from app.models.ratings import Rating 
+from app.models.product import Product
+from app.models.review import Review  
+from app.models.rating import Rating 
 
 from app.backend.db import Base
 from app.models import category, product, user, rating, review

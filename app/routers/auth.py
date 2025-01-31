@@ -46,6 +46,7 @@ async def get_current_user(token: Annotated[str, Depends(oauth2_scheme)]):
         is_admin: str = payload.get('is_admin')
         is_supplier: str = payload.get('is_supplier')
         is_customer: str = payload.get('is_customer')
+        is_active: bool = payload.get('is_active')
         expire = payload.get('exp')
         if username is None or user_id is None:
             raise HTTPException(
@@ -63,6 +64,7 @@ async def get_current_user(token: Annotated[str, Depends(oauth2_scheme)]):
             'is_admin': is_admin,
             'is_supplier': is_supplier,
             'is_customer': is_customer,
+            'is_active': is_active,
         }
     except ExpiredSignatureError:
         raise HTTPException(

@@ -1,6 +1,5 @@
 from pydantic import BaseModel
-
-
+from typing import Optional  
 class CreateProduct(BaseModel):
     name: str
     description: str
@@ -23,15 +22,10 @@ class CreateUser(BaseModel):
     password: str
 
 class  CreateReview(BaseModel):
-    user_id: int
-    product_id: int
     header: str
     body: str
-    rating_id: int
-    is_active: bool
-
+    rating: Optional[float] = None
+    class Config:
+        from_attributes = True
 class CreateRating(BaseModel):
     grade: float
-    user_id: int
-    product_id: int
-    is_active: bool

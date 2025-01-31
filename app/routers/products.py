@@ -9,6 +9,7 @@ from sqlalchemy import select, insert, update
 from app.backend.db_depends import get_db
 from app.schemas import CreateProduct
 from app.models import *
+from app.models.user import User
 from app.models.category import Category
 from app.models.product import Product
 from app.routers.auth import get_current_user
@@ -30,6 +31,7 @@ async def all_products(db: Annotated[AsyncSession, Depends(get_db)]):
 
 @router.post('/')
 async def create_product(db: Annotated[AsyncSession, Depends(get_db)], create_product: CreateProduct, get_user: Annotated[dict, Depends(get_current_user)]):
+    user = await db.scalar(select(User).where(User.id == get_user.get('id')))
     if not user or not user.is_active:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
@@ -49,6 +51,7 @@ async def create_product(db: Annotated[AsyncSession, Depends(get_db)], create_pr
                                         stock=create_product.stock,
                                         category_id=create_product.category,
                                         rating=0.0,
+                                        supplier_id = user.id,
                                         slug=slugify(create_product.name)))
         await db.commit()
         return {
